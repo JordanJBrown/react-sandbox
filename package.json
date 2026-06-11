@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "dev": "vite",
-    "build": "vite build",
+    "build": "echo Build happens automatically in GitHub Actions after you push to main.",
     "preview": "vite preview"
   },
   "keywords": [],
