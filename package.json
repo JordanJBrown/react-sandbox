@@ -6,6 +6,7 @@
   "scripts": {
     "dev": "vite",
     "build": "echo Build happens automatically in GitHub Actions after you push to main.",
+    "build:ci": "vite build",
     "preview": "vite preview"
   },
   "keywords": [],
