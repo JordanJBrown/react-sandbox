@@ -59,7 +59,7 @@ console.log(newPizzaData);
 function App() {
     return (
         <>
-        <h1 className="text-red-500 text-3xl text-bold">Hello React</h1>
+        <h1 className="text-red-500 text-3xl text-bold">Hello React!!!</h1>
         <Pizza />
         </>
     )
