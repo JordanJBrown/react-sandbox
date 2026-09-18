@@ -1,15 +1,37 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import ReactDOM from "react-dom/client";
 import "./styles.css";
 import pizzaData from "./pizzaData";
 
-
 function App() {
+  const [adjectives, setAdjectives] = useState([]);
+
+  useEffect(() => {
+    async function getAdjective() {
+      const res = await fetch(
+        `https://api.datamuse.com/words?rel_jjb=pizza&max=300`,
+      );
+      const data = await res.json();
+      setAdjectives(data);
+    }
+
+    getAdjective();
+  }, []);
+
   return (
     <>
-      <Greeting personName="Barney Bubble"/>
+      <Greeting personName="Barney Bubble" />
+      <br />
       <div>
-        {pizzaData.map((eachPizza) => <PizzaMenu name={eachPizza.name} />)}
+        {pizzaData.map((eachPizza) => {
+          const randomAdjective =
+            adjectives.length > 0
+              ? adjectives[Math.floor(Math.random() * adjectives.length)].word
+              : "great";
+          return (
+            <PizzaMenu name={eachPizza.name} adjective={randomAdjective} key={eachPizza.name} />
+          );
+        })}
       </div>
     </>
   );
@@ -26,7 +48,9 @@ function Greeting(dumdums) {
 function PizzaMenu(props) {
   return (
     <>
-      <h2 className="text-green-500 text-2xl">{props.name} is great!</h2>
+      <h2 className="text-green-500 text-2xl">
+        {props.name} is {props.adjective}!
+      </h2>
     </>
   );
 }
